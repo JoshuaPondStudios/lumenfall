@@ -1,15 +1,19 @@
 extends CharacterBody2D
 
-@export var speed := 100
+@export var speed := 75
+@export var sprint_speed := 130  # Geschwindigkeit beim Sprinten
 @export var dash_speed := 300
 @export var dash_duration := 0.2
 @export var dash_cooldown := 2.5
-@export var dash_effect_time := 0.05  # Effekt für die Transparenz während des Dashens
-@export var camera_swing_amount := 10  # Schwung der Kamera in die Dash-Richtung
+@export var dash_effect_time := 0.05
+@export var camera_swing_amount := 10
+@export var shake_duration := 0.3
+@export var shake_intensity := 1
 
 @onready var anim := $AnimationPlayer
 @onready var sprite := $Sprite2D
-@onready var camera := $Camera2D  # Verweis auf die Kamera
+@onready var camera := $Camera2D
+@onready var attack_area := $AttackArea
 
 var last_direction := "south"
 var is_attacking := false
@@ -19,19 +23,26 @@ var attack_cooldown_timer := 0.0
 var dash_timer := 0.0
 var dash_cooldown_timer := 0.0
 var dash_direction := Vector2.ZERO
-var dash_effect_timer := 0.0  # Timer für den Dash-Effekt
+var dash_effect_timer := 0.0
 
-var dash_scale_factor := 1.5  # Skalierungsfaktor für den Dash-Effekt
-var original_camera_position := Vector2.ZERO  # Ursprüngliche Kamera-Position
+var dash_scale_factor := 1.5
+var original_camera_position := Vector2.ZERO
 
-var health := 100  # Beispiel: Lebenspunkte des Spielers
+var health := 100
+
+@onready var slime := get_node_or_null("Slime")
+
+var shake_timer := 0.0
+var shake_recovery := 0.0
 
 func _ready():
+	add_to_group("player")
 	anim.animation_finished.connect(_on_attack_animation_finished)
-	original_camera_position = camera.position  # Speichere die ursprüngliche Kamera-Position
+	original_camera_position = camera.position  # Ursprüngliche Kamera-Position
+	sprite.scale = Vector2(1, 1)  # Sicherstellen, dass die Skalierung nicht verzerrt
 
 func _physics_process(delta):
-	# Timer runterzählen
+	# Timers reduzieren
 	if attack_cooldown_timer > 0:
 		attack_cooldown_timer -= delta
 	if dash_cooldown_timer > 0:
@@ -41,27 +52,38 @@ func _physics_process(delta):
 	else:
 		is_dashing = false
 
-	# Dash-Effekt Timer
 	if dash_effect_timer > 0:
 		dash_effect_timer -= delta
 		if dash_effect_timer <= 0:
-			# Setze Transparenz zurück nach dem Effekt
 			sprite.modulate.a = 1.0
-			# Reset Scale nach Dash
 			sprite.scale = Vector2(1, 1)
-			# Stoppe das Kamera-Schwingen und setze Kamera zurück
 			camera.position = original_camera_position
+
+	if shake_timer > 0:
+		shake_timer -= delta
+		var shake_offset = Vector2(randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity))
+		camera.position = original_camera_position + shake_offset
+
+		if shake_timer <= 0 and shake_recovery <= 0:
+			shake_recovery = 0.1  # Wiederherstellungszeit für den Shake
+
+	elif shake_recovery > 0:
+		shake_recovery -= delta
+		if shake_recovery <= 0:
+			camera.position = original_camera_position
+
+	else:
+		camera.position = original_camera_position
 
 	var input_dir := Vector2.ZERO
 	var direction_string := ""
 
-	# Dash-Input
+	# Dash-Logik
 	if Input.is_action_just_pressed("dash") and !is_dashing and dash_cooldown_timer <= 0 and !is_attacking:
 		is_dashing = true
 		dash_timer = dash_duration
 		dash_cooldown_timer = dash_cooldown
 
-		# Dash Richtung ist letzte Eingabe
 		dash_direction = Vector2.ZERO
 		if Input.is_action_pressed("right"):
 			dash_direction.x += 1
@@ -73,40 +95,41 @@ func _physics_process(delta):
 			dash_direction.y -= 1
 
 		if dash_direction == Vector2.ZERO:
-			# Wenn keine Taste gedrückt ist -> letzter Bewegungsvektor
 			match last_direction:
 				"north": dash_direction = Vector2.UP
 				"south": dash_direction = Vector2.DOWN
 				"east": dash_direction = Vector2.RIGHT
+				"west": dash_direction = Vector2.LEFT
+
 		dash_direction = dash_direction.normalized()
 
 		velocity = dash_direction * dash_speed
-		move_and_slide()  # Bewegung mit der Dash-velocity
+		move_and_slide()
 
-		# Setze Dash-Effekt (Transparenz und Skalierung)
 		dash_effect_timer = dash_effect_time
-		sprite.modulate.a = 0.5  # Halbtransparenter Effekt
-		sprite.scale = Vector2(dash_scale_factor, 1)  # Skalierung des Sprites
-
-		# Kamera-Schwingen in Dash-Richtung
+		sprite.modulate.a = 0.5
+		sprite.scale = Vector2(dash_scale_factor, 1)
 		camera.position = original_camera_position + dash_direction * camera_swing_amount
 
 		return
 
-	# Angriff
+	# Sprint-Logik: Wenn Shift gedrückt wird, beschleunigt der Spieler
+	var current_speed := speed
+	if Input.is_action_pressed("sprint"):
+		current_speed = sprint_speed
+
 	if Input.is_action_just_pressed("attack") and !is_attacking and attack_cooldown_timer <= 0:
 		is_attacking = true
-		attack_cooldown_timer = 1.0  # Angriff Cooldown auf 1 Sekunde
+		attack_cooldown_timer = 1.0
 		anim.play("attack_" + last_direction)
 		velocity = Vector2.ZERO
+		_attack()  # Ruft die Angriffslogik auf
 		return
 
-	# Dash-Bewegung
 	if is_dashing:
-		move_and_slide()  # Keine Argumente, da "velocity" schon gesetzt ist
+		move_and_slide()
 		return
 
-	# Normale Bewegung
 	if !is_attacking:
 		if Input.is_action_pressed("right"):
 			input_dir.x += 1
@@ -119,23 +142,44 @@ func _physics_process(delta):
 
 		if input_dir != Vector2.ZERO:
 			input_dir = input_dir.normalized()
-			velocity = input_dir * speed
+			velocity = input_dir * current_speed  # Die Geschwindigkeit abhängig von Sprint
 			move_and_slide()
 
+			# Richtungswechsel sofort umsetzen und Animation anpassen
 			if abs(input_dir.x) > abs(input_dir.y):
 				if input_dir.x > 0:
 					direction_string = "east"
-					sprite.flip_h = false
+					sprite.flip_h = false  # Blick nach rechts
 				else:
-					direction_string = "east"
-					sprite.flip_h = true
-			else:
-				sprite.flip_h = false
+					direction_string = "east"  # Die gleiche Animation für West
+					sprite.flip_h = true  # Umgekehrte Blickrichtung
+			elif abs(input_dir.x) < abs(input_dir.y):
 				if input_dir.y > 0:
 					direction_string = "south"
+					sprite.flip_h = false
 				else:
 					direction_string = "north"
+					sprite.flip_h = false
+			else:
+				# Falls beide Achsen gleichzeitig gedrückt sind, überprüfe die Hauptrichtung
+				if input_dir.x > 0:
+					direction_string = "east"
+					sprite.flip_h = false
+				elif input_dir.x < 0:
+					direction_string = "east"  # Die gleiche Animation für West
+					sprite.flip_h = true  # Umgekehrte Blickrichtung
+				elif input_dir.y > 0:
+					direction_string = "south"
+					sprite.flip_h = false
+				else:
+					direction_string = "north"
+					sprite.flip_h = false
 
+			# Animationsgeschwindigkeit anpassen
+			var anim_speed := current_speed / speed  # Verhältnis der Geschwindigkeiten
+			anim.speed_scale = anim_speed  # Animationsgeschwindigkeit anpassen
+
+			# Animation abspielen und sofortige Richtungsänderung sicherstellen
 			if !anim.is_playing() or not anim.current_animation.begins_with("walk"):
 				anim.play("walk_" + direction_string)
 
@@ -153,14 +197,22 @@ func _on_attack_animation_finished(anim_name: StringName) -> void:
 		else:
 			anim.play("idle_" + last_direction)
 
+# Angriffslogik
+func _attack():
+	var bodies = attack_area.get_overlapping_bodies()
+	for body in bodies:
+		if body.is_in_group("enemy"):
+			body.take_damage(1)
+			shake_timer = shake_duration  # Shake-Effekt aktivieren
+			shake_recovery = 0.2  # Verzögerung für den Nachhall
+
 # Methode zum Schadennehmen
 func take_damage(amount: int):
 	health -= amount
 	print("Player Health: ", health)
 	if health <= 0:
-		die()  # Spieler stirbt oder wird zurückgesetzt
+		die()  # Tod des Spielers
 
 # Methode zum Tod des Spielers
 func die():
-	queue_free()  # Beispiel: Löscht den Player aus der Szene
-	# oder setze den Spieler zurück, je nach Bedarf
+	queue_free()  # Löscht den Spieler

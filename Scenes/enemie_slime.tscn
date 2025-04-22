@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c3yxbgcipa0xg"]
 
-[ext_resource type="Script" path="res://Scripts/enemie_slime.gd" id="1_6tic4"]
+[ext_resource type="Script" uid="uid://ieolwf8h7otg" path="res://Scripts/enemie_slime.gd" id="1_6tic4"]
 [ext_resource type="Texture2D" uid="uid://ue2yf1ykg5lc" path="res://Assets/Enemie/Slime_Green.png" id="1_kbrsc"]
 
 [sub_resource type="Animation" id="Animation_mce5u"]
@@ -82,11 +82,11 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_va4m4"]
 _data = {
-"RESET": SubResource("Animation_mce5u"),
-"die": SubResource("Animation_hfe82"),
-"idle": SubResource("Animation_ff1d5"),
-"jump": SubResource("Animation_urper"),
-"walk": SubResource("Animation_j8et3")
+&"RESET": SubResource("Animation_mce5u"),
+&"die": SubResource("Animation_hfe82"),
+&"idle": SubResource("Animation_ff1d5"),
+&"jump": SubResource("Animation_urper"),
+&"walk": SubResource("Animation_j8et3")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j83fp"]

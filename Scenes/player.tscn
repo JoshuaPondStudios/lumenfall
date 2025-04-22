@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://bf6gsr2n5c1b7"]
 
 [ext_resource type="Texture2D" uid="uid://bp7dor4gbiuxh" path="res://Assets/Player/Player.png" id="1_gnaxm"]
-[ext_resource type="Script" path="res://Scenes/player.gd" id="1_muy17"]
+[ext_resource type="Script" uid="uid://f6013be0kiij" path="res://Scenes/player.gd" id="1_muy17"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32b2k"]
 size = Vector2(13, 18)
@@ -176,17 +176,17 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b2fy6"]
 _data = {
-"RESET": SubResource("Animation_x3jt1"),
-"attack_east": SubResource("Animation_3aayw"),
-"attack_north": SubResource("Animation_xhxvj"),
-"attack_south": SubResource("Animation_kxe4b"),
-"die": SubResource("Animation_edrqq"),
-"idle_east": SubResource("Animation_q611b"),
-"idle_north": SubResource("Animation_3x6e4"),
-"idle_south": SubResource("Animation_ct51j"),
-"walk_east": SubResource("Animation_p0e8h"),
-"walk_north": SubResource("Animation_grlr0"),
-"walk_south": SubResource("Animation_7h58e")
+&"RESET": SubResource("Animation_x3jt1"),
+&"attack_east": SubResource("Animation_3aayw"),
+&"attack_north": SubResource("Animation_xhxvj"),
+&"attack_south": SubResource("Animation_kxe4b"),
+&"die": SubResource("Animation_edrqq"),
+&"idle_east": SubResource("Animation_q611b"),
+&"idle_north": SubResource("Animation_3x6e4"),
+&"idle_south": SubResource("Animation_ct51j"),
+&"walk_east": SubResource("Animation_p0e8h"),
+&"walk_north": SubResource("Animation_grlr0"),
+&"walk_south": SubResource("Animation_7h58e")
 }
 
 [node name="Player" type="CharacterBody2D"]

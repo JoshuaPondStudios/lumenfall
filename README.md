@@ -45,7 +45,7 @@
 
 ## 🔧 Engine & Tools
 
-- **Engine**: Godot 4.3
+- **Engine**: Godot 4.4
 - **Sprache**: GDScript
 - **Status**: Frühprototyp
 - **Plattform-Ziel**: PC (ggf. Mobile später)

@@ -1,6 +1,6 @@
 # 🌒 Lumenfall - Action RPG Prototype
 
-**Lumenfall** ist ein düsteres 2D-Action-Kampfspiel mit Open-World-Elementen, mystischen Kräften und dynamischem Kampfsystem. Dieses Projekt befindet sich derzeit in der Prototyp-Phase und wird parallel zu *Joey's Slimeventure* entwickelt.
+**Lumenfall** ist ein düsteres 2D-Action-Kampfspiel mit Open-World-Elementen, mystischen Kräften und dynamischem Kampfsystem. Dieses Projekt befindet sich derzeit in der Prototyp-Phase.
 
 ---
 

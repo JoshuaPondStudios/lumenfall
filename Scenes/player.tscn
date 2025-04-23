@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bf6gsr2n5c1b7"]
+[gd_scene load_steps=17 format=3 uid="uid://bf6gsr2n5c1b7"]
 
 [ext_resource type="Texture2D" uid="uid://bp7dor4gbiuxh" path="res://Assets/Player/Player.png" id="1_gnaxm"]
-[ext_resource type="Script" path="res://Scenes/player.gd" id="1_muy17"]
+[ext_resource type="Script" uid="uid://f6013be0kiij" path="res://Scenes/player.gd" id="1_muy17"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_32b2k"]
-size = Vector2(13, 18)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
+radius = 6.0
+height = 18.0
 
 [sub_resource type="Animation" id="Animation_x3jt1"]
 length = 0.001
@@ -131,6 +132,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_p0e8h"]
 resource_name = "walk_east"
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -138,7 +140,7 @@ tracks/0/path = NodePath("Player/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [24, 29]
@@ -146,6 +148,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_grlr0"]
 resource_name = "walk_north"
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -153,7 +156,7 @@ tracks/0/path = NodePath("Player/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [30, 35]
@@ -161,6 +164,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_7h58e"]
 resource_name = "walk_south"
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -168,7 +172,7 @@ tracks/0/path = NodePath("Player/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [18, 23]
@@ -176,39 +180,51 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b2fy6"]
 _data = {
-"RESET": SubResource("Animation_x3jt1"),
-"attack_east": SubResource("Animation_3aayw"),
-"attack_north": SubResource("Animation_xhxvj"),
-"attack_south": SubResource("Animation_kxe4b"),
-"die": SubResource("Animation_edrqq"),
-"idle_east": SubResource("Animation_q611b"),
-"idle_north": SubResource("Animation_3x6e4"),
-"idle_south": SubResource("Animation_ct51j"),
-"walk_east": SubResource("Animation_p0e8h"),
-"walk_north": SubResource("Animation_grlr0"),
-"walk_south": SubResource("Animation_7h58e")
+&"RESET": SubResource("Animation_x3jt1"),
+&"attack_east": SubResource("Animation_3aayw"),
+&"attack_north": SubResource("Animation_xhxvj"),
+&"attack_south": SubResource("Animation_kxe4b"),
+&"die": SubResource("Animation_edrqq"),
+&"idle_east": SubResource("Animation_q611b"),
+&"idle_north": SubResource("Animation_3x6e4"),
+&"idle_south": SubResource("Animation_ct51j"),
+&"walk_east": SubResource("Animation_p0e8h"),
+&"walk_north": SubResource("Animation_grlr0"),
+&"walk_south": SubResource("Animation_7h58e")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
+radius = 19.105
+
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 2
 script = ExtResource("1_muy17")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_gnaxm")
 hframes = 6
 vframes = 10
+frame = 23
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -2)
-shape = SubResource("RectangleShape2D_32b2k")
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_cvnsp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_b2fy6")
+&"": SubResource("AnimationLibrary_b2fy6")
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(5, 5)
+limit_left = -128
+limit_top = -96
+limit_right = 512
+limit_bottom = 256
 limit_smoothed = true
-position_smoothing_enabled = true
+editor_draw_limits = true
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_cvnsp")

@@ -67,5 +67,10 @@ Wir laden die Community ein, Feedback zu geben und Code beizutragen. Sie können
 
 ---
 
-## 📄 **Lizenz**
-Dieses Projekt steht unter der [MIT-Lizenz](LICENSE).
+## 📄License
+
+This project is licensed under the [Lumenfall Community License v1.0](LICENSE.txt).  
+The code is publicly available for educational and non-commercial use.  
+**Commercial use or redistribution is strictly prohibited**.
+
+All rights reserved by the creator, **Joshua Pond**.

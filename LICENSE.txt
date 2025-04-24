@@ -1,0 +1,21 @@
+Lumenfall Community License (v1.0)
+
+Copyright (c) 2025 Joshua Pond
+
+This software is provided as a community learning and development resource. The source code is publicly accessible to promote transparency, educational value, and non-commercial collaboration.
+
+Permission is hereby granted to any individual or entity to:
+• View and study the source code for educational purposes
+• Modify and adapt the code for personal or non-commercial use
+• Share modified versions of the project, provided they are clearly marked as unofficial and are not distributed for profit
+
+Commercial use is strictly prohibited. This includes, but is not limited to:
+• Selling or licensing the game or its source code, whether modified or unmodified
+• Distributing the game (or derivative works) on commercial platforms such as Steam, itch.io, Epic Games Store, etc.
+• Using any part of this codebase in a commercial project
+
+All commercial rights to the name, brand, assets, and source code of *Lumenfall* are exclusively retained by the original author, Joshua Pond.
+
+By accessing, using, or modifying this repository or its contents, you agree to be bound by the terms of this license.
+
+For commercial licensing inquiries or special permissions, please contact the author directly.

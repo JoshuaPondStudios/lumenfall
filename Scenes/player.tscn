@@ -1,7 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://bf6gsr2n5c1b7"]
+[gd_scene load_steps=22 format=3 uid="uid://bf6gsr2n5c1b7"]
 
-[ext_resource type="Texture2D" uid="uid://bp7dor4gbiuxh" path="res://Assets/Player/Player.png" id="1_gnaxm"]
 [ext_resource type="Script" uid="uid://f6013be0kiij" path="res://Scenes/player.gd" id="1_muy17"]
+[ext_resource type="Texture2D" uid="uid://se1nubj35myy" path="res://Assets/Player/PlayerNEW-export.png" id="2_cvnsp"]
+[ext_resource type="Resource" uid="uid://cu51mb6hyh14n" path="res://Inventory/PlayerInv.tres" id="2_fkybt"]
+[ext_resource type="Texture2D" uid="uid://cq8mcktfxdjfs" path="res://Assets/UI/HealthBar/under.png" id="3_vgqql"]
+[ext_resource type="Texture2D" uid="uid://bsa8nifalf2q6" path="res://Assets/UI/HealthBar/progress.png" id="4_fkybt"]
+[ext_resource type="PackedScene" uid="uid://87fjtxx0nulq" path="res://Scenes/inv_ui.tscn" id="6_x3wgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
 radius = 6.0
@@ -70,8 +74,9 @@ tracks/0/keys = {
 "values": [36, 39]
 }
 
-[sub_resource type="Animation" id="Animation_edrqq"]
-resource_name = "die"
+[sub_resource type="Animation" id="Animation_cvnsp"]
+resource_name = "dash"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -79,7 +84,23 @@ tracks/0/path = NodePath("Player/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [60, 63]
+}
+
+[sub_resource type="Animation" id="Animation_edrqq"]
+resource_name = "die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [54, 57]
@@ -184,6 +205,7 @@ _data = {
 &"attack_east": SubResource("Animation_3aayw"),
 &"attack_north": SubResource("Animation_xhxvj"),
 &"attack_south": SubResource("Animation_kxe4b"),
+&"dash": SubResource("Animation_cvnsp"),
 &"die": SubResource("Animation_edrqq"),
 &"idle_east": SubResource("Animation_q611b"),
 &"idle_north": SubResource("Animation_3x6e4"),
@@ -193,17 +215,17 @@ _data = {
 &"walk_south": SubResource("Animation_7h58e")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
-radius = 19.105
+[sub_resource type="CircleShape2D" id="CircleShape2D_vgqql"]
+radius = 14.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_muy17")
+inv = ExtResource("2_fkybt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_gnaxm")
+texture = ExtResource("2_cvnsp")
 hframes = 6
-vframes = 10
-frame = 23
+vframes = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
@@ -227,4 +249,24 @@ editor_draw_limits = true
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-shape = SubResource("CircleShape2D_cvnsp")
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_vgqql")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="TextureProgressBar" parent="UI"]
+offset_left = 76.0
+offset_top = 57.0
+offset_right = 126.0
+offset_bottom = 97.0
+scale = Vector2(6, 6)
+value = 100.0
+texture_under = ExtResource("3_vgqql")
+texture_progress = ExtResource("4_fkybt")
+
+[node name="InvUI" parent="." instance=ExtResource("6_x3wgy")]
+offset_left = -62.0
+offset_top = -79.0
+offset_right = 146.0
+offset_bottom = 17.0
+scale = Vector2(0.6, 0.6)

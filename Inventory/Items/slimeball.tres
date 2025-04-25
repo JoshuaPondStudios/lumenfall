@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://cotjtwmjbbfco"]
+
+[ext_resource type="Script" uid="uid://ifny4thucc58" path="res://Inventory/Scripts/inventory_item.gd" id="1_g3u8l"]
+[ext_resource type="Texture2D" uid="uid://318txkmkwf1t" path="res://Assets/Items/slimeball/slimeball.png" id="2_n2p2s"]
+
+[resource]
+script = ExtResource("1_g3u8l")
+name = "slimeball"
+texture = ExtResource("2_n2p2s")
+can_heal = false
+heal_amount = 0
+amount = 1
+is_consumable = false
+metadata/_custom_type_script = "uid://ifny4thucc58"

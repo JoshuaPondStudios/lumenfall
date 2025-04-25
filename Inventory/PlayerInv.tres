@@ -1,0 +1,184 @@
+[gd_resource type="Resource" script_class="Inv" load_steps=38 format=3 uid="uid://cu51mb6hyh14n"]
+
+[ext_resource type="Script" uid="uid://d5xammo3casy" path="res://Inventory/Scripts/inventory_slot.gd" id="2_0wjt5"]
+[ext_resource type="Script" uid="uid://bwcwrda0obqpe" path="res://Inventory/Scripts/inventory.gd" id="3_ddl2c"]
+
+[sub_resource type="Resource" id="Resource_r0g6w"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_ddl2c"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_vr7si"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_pravs"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_4ib0d"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_mcy16"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_trol0"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_ir55m"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_xydyl"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_asi17"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_nwuun"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_vlooi"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_v1kqv"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_n1gnb"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_0fo6o"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_i3cda"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_ui6c0"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_reeta"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_hyxer"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_a7yo6"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_ylhwx"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_h3wrc"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_os2qh"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_jtr4g"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_bjj8q"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_wlnpm"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_qmyw2"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_gju3a"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_eqb1x"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_iu2pn"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_mf2gl"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_74hpy"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_8403f"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_vc3vr"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[sub_resource type="Resource" id="Resource_u20pw"]
+script = ExtResource("2_0wjt5")
+amount = 0
+metadata/_custom_type_script = "uid://d5xammo3casy"
+
+[resource]
+script = ExtResource("3_ddl2c")
+slots = Array[ExtResource("2_0wjt5")]([SubResource("Resource_r0g6w"), SubResource("Resource_ddl2c"), SubResource("Resource_vr7si"), SubResource("Resource_pravs"), SubResource("Resource_4ib0d"), SubResource("Resource_mcy16"), SubResource("Resource_trol0"), SubResource("Resource_ir55m"), SubResource("Resource_xydyl"), SubResource("Resource_asi17"), SubResource("Resource_nwuun"), SubResource("Resource_vlooi"), SubResource("Resource_v1kqv"), SubResource("Resource_n1gnb"), SubResource("Resource_0fo6o"), SubResource("Resource_i3cda"), SubResource("Resource_ui6c0"), SubResource("Resource_reeta"), SubResource("Resource_hyxer"), SubResource("Resource_a7yo6"), SubResource("Resource_ylhwx"), SubResource("Resource_h3wrc"), SubResource("Resource_os2qh"), SubResource("Resource_jtr4g"), SubResource("Resource_bjj8q"), SubResource("Resource_wlnpm"), SubResource("Resource_qmyw2"), SubResource("Resource_gju3a"), SubResource("Resource_eqb1x"), SubResource("Resource_iu2pn"), SubResource("Resource_mf2gl"), SubResource("Resource_74hpy"), SubResource("Resource_8403f"), SubResource("Resource_vc3vr"), SubResource("Resource_u20pw"), null])
+metadata/_custom_type_script = "uid://bwcwrda0obqpe"

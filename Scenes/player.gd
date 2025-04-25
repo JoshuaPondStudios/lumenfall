@@ -10,10 +10,14 @@ extends CharacterBody2D
 @export var shake_duration := 0.3
 @export var shake_intensity := 1
 
+@export var inv: Inv
+
+
 @onready var anim := $AnimationPlayer
 @onready var sprite := $Sprite2D
 @onready var camera := $Camera2D
 @onready var attack_area := $AttackArea
+@onready var health_bar := $UI/HealthBar
 
 var last_direction := "south"
 var is_attacking := false
@@ -34,6 +38,12 @@ var health := 100
 
 var shake_timer := 0.0
 var shake_recovery := 0.0
+
+# Knockback-Variablen
+var knockback_strength := 100  # Stärke des Knockbacks
+var knockback_duration := 0.2  # Dauer des Knockbacks
+var knockback_timer := 0.0
+var knockback_direction := Vector2.ZERO
 
 func _ready():
 	add_to_group("player")
@@ -100,17 +110,11 @@ func _physics_process(delta):
 				"south": dash_direction = Vector2.DOWN
 				"east": dash_direction = Vector2.RIGHT
 				"west": dash_direction = Vector2.LEFT
-
 		dash_direction = dash_direction.normalized()
 
 		velocity = dash_direction * dash_speed
 		move_and_slide()
-
-		dash_effect_timer = dash_effect_time
-		sprite.modulate.a = 0.5
-		sprite.scale = Vector2(dash_scale_factor, 1)
-		camera.position = original_camera_position + dash_direction * camera_swing_amount
-
+		anim.play("dash")
 		return
 
 	# Sprint-Logik: Wenn Shift gedrückt wird, beschleunigt der Spieler
@@ -188,6 +192,13 @@ func _physics_process(delta):
 			velocity = Vector2.ZERO
 			anim.play("idle_" + last_direction)
 
+	# Knockback-Logik, wenn der Spieler getroffen wird
+	if knockback_timer > 0:
+		knockback_timer -= delta
+		velocity = knockback_direction * knockback_strength  # Bewege den Spieler in die entgegengesetzte Richtung des Angriffs
+		move_and_slide()
+		anim.play("hit")  # Optional eine "hit" Animation abspielen
+
 # Callback wenn Animation endet
 func _on_attack_animation_finished(anim_name: StringName) -> void:
 	if anim_name.begins_with("attack"):
@@ -206,13 +217,28 @@ func _attack():
 			shake_timer = shake_duration  # Shake-Effekt aktivieren
 			shake_recovery = 0.2  # Verzögerung für den Nachhall
 
-# Methode zum Schadennehmen
-func take_damage(amount: int):
+# Methode zum Schadennehmen und Knockback anwenden
+func take_damage(amount: int, attack_direction: Vector2):
 	health -= amount
+	health = clamp(health, 0, 100)
+	health_bar.value = health
 	print("Player Health: ", health)
+	
+	# Setze den Knockback-Effekt
+	knockback_direction = attack_direction.normalized()  # Angriff kommt von der Richtung
+	knockback_timer = knockback_duration
+	
+	# Optional: Kamerazittern bei Knockback
+	shake_timer = shake_duration  # Shake-Effekt aktivieren
+	shake_recovery = 0.2  # Verzögerung für den Nachhall
+
+	# Wenn der Spieler keine Gesundheit mehr hat, stirbt er
 	if health <= 0:
-		die()  # Tod des Spielers
+		die()
 
 # Methode zum Tod des Spielers
 func die():
 	queue_free()  # Löscht den Spieler
+
+func collect(item):
+	inv.insert(item)

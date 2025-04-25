@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://lwc7akh13nsv"]
+[gd_scene load_steps=18 format=4 uid="uid://lwc7akh13nsv"]
 
 [ext_resource type="Texture2D" uid="uid://dkt3hncn2hpne" path="res://Assets/Tilesets/Path_Tile.png" id="1_hmykj"]
 [ext_resource type="PackedScene" uid="uid://bf6gsr2n5c1b7" path="res://Scenes/player.tscn" id="2_gjohp"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://bjgl1rlipw2g5" path="res://Assets/Tilesets/Beach_Tile.png" id="5_2a60c"]
 [ext_resource type="Texture2D" uid="uid://c0o5i6cq4872o" path="res://Assets/Tilesets/Water_Middle.png" id="6_4iphx"]
 [ext_resource type="Script" uid="uid://bnsocndtg4ng2" path="res://Scenes/SlimeSpawner.gd" id="8_4iphx"]
+[ext_resource type="PackedScene" uid="uid://co145bjht0r03" path="res://Scenes/slime_ball_collectable.tscn" id="9_jgkgd"]
+[ext_resource type="PackedScene" uid="uid://mfyq12iil8vs" path="res://Scenes/pause_menu.tscn" id="11_rqhku"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i8ckr"]
 texture = ExtResource("1_hmykj")
@@ -123,8 +125,21 @@ tile_set = SubResource("TileSet_eq76h")
 
 [node name="SlimeSpawner" type="Node2D" parent="." node_paths=PackedStringArray("tilemap")]
 script = ExtResource("8_4iphx")
-spawn_interval = 3.0
+spawn_interval = 5.0
 tilemap = NodePath("../TileMap")
+
+[node name="SlimeBallCollectable" parent="." instance=ExtResource("9_jgkgd")]
+position = Vector2(170, 110)
+
+[node name="SlimeBallCollectable2" parent="." instance=ExtResource("9_jgkgd")]
+position = Vector2(213, 96)
+
+[node name="SlimeBallCollectable3" parent="." instance=ExtResource("9_jgkgd")]
+position = Vector2(66, 173)
 
 [node name="Player" parent="." instance=ExtResource("2_gjohp")]
 position = Vector2(26, 22)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("11_rqhku")]

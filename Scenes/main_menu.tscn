@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4r31bv7n81dt"]
+
+[ext_resource type="Script" uid="uid://cpqd20fh01kip" path="res://Scripts/MainMenu.gd" id="1_28flt"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_28flt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Start" type="Button" parent="CanvasLayer"]
+offset_left = 371.0
+offset_top = 176.0
+offset_right = 685.0
+offset_bottom = 240.0
+text = "START"
+
+[node name="Exit" type="Button" parent="CanvasLayer"]
+offset_left = 384.0
+offset_top = 273.0
+offset_right = 679.0
+offset_bottom = 348.0
+text = "EXIT"

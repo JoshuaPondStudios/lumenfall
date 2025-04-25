@@ -148,3 +148,5 @@ layout_mode = 2
 
 [node name="Slot36" parent="NinePatchRect/GridContainer" instance=ExtResource("3_owgac")]
 layout_mode = 2
+
+[node name="DraggedItem" type="Sprite2D" parent="."]

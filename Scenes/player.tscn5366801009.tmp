@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://f6013be0kiij" path="res://Scripts/player.gd" id="1_muy17"]
 [ext_resource type="Texture2D" uid="uid://se1nubj35myy" path="res://Assets/Player/PlayerNEW-export.png" id="2_cvnsp"]
-[ext_resource type="Resource" uid="uid://cu51mb6hyh14n" path="res://Inventory/PlayerInv.tres" id="2_x3wgy"]
+[ext_resource type="Resource" uid="uid://cu51mb6hyh14n" path="res://Inventory/PlayerInv.tres" id="2_fkybt"]
 [ext_resource type="Texture2D" uid="uid://cq8mcktfxdjfs" path="res://Assets/UI/HealthBar/under.png" id="3_vgqql"]
 [ext_resource type="Texture2D" uid="uid://bsa8nifalf2q6" path="res://Assets/UI/HealthBar/progress.png" id="4_fkybt"]
 [ext_resource type="PackedScene" uid="uid://87fjtxx0nulq" path="res://Scenes/inv_ui.tscn" id="6_x3wgy"]
@@ -220,7 +220,16 @@ radius = 14.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_muy17")
-inv = ExtResource("2_x3wgy")
+speed = null
+sprint_speed = null
+dash_speed = null
+dash_duration = null
+dash_cooldown = null
+dash_effect_time = null
+camera_swing_amount = null
+shake_duration = null
+shake_intensity = null
+inv = ExtResource("2_fkybt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_cvnsp")

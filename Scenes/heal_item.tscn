@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://71e0o1ujsypy" path="res://Inventory/Scripts/heal_item.gd" id="1_d6ei1"]
 [ext_resource type="Texture2D" uid="uid://fqbmcbesjyrb" path="res://Assets/Items/heal/heal.png" id="1_ushss"]
-[ext_resource type="Resource" uid="uid://dxqwj2tqoqnkw" path="res://Inventory/Items/heal.tres" id="2_x5udk"]
+[ext_resource type="Resource" uid="uid://jgbe6us1cwq2" path="res://Inventory/Items/heal.tres" id="2_x5udk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d6ei1"]
 radius = 8.0

@@ -29,3 +29,25 @@ func insert(item: InvItem) -> void:
 
 	# Signal aussenden, um UI oder andere Listener zu benachrichtigen
 	update.emit()
+
+# Neue Funktion zum Entfernen eines Items
+func remove_item(item: InvItem) -> void:
+	# Suche den Slot, der das Item enthält
+	var itemslots = slots.filter(func(slot):
+		return slot != null and slot.item == item
+	)
+
+	# Wenn ein Slot mit dem Item gefunden wurde
+	if !itemslots.is_empty():
+		var slot = itemslots[0]
+		# Wenn die Menge > 1, verringere die Menge
+		if slot.amount > 1:
+			slot.amount -= 1
+		else:
+			# Ansonsten das Item vollständig entfernen (Menge 0)
+			slot.item = null
+			slot.amount = 0
+		# Signal aussenden, um UI zu aktualisieren
+		update.emit()
+	else:
+		print("Item nicht im Inventar gefunden!")

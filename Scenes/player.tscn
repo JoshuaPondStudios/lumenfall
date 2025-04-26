@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bsa8nifalf2q6" path="res://Assets/UI/HealthBar/progress.png" id="4_fkybt"]
 [ext_resource type="PackedScene" uid="uid://87fjtxx0nulq" path="res://Scenes/inv_ui.tscn" id="6_x3wgy"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
-radius = 6.0
-height = 18.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x3wgy"]
+radius = 3.0
+height = 13.0
 
 [sub_resource type="Animation" id="Animation_x3jt1"]
 length = 0.001
@@ -228,8 +228,9 @@ hframes = 6
 vframes = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
-shape = SubResource("CapsuleShape2D_cvnsp")
+position = Vector2(-0.5, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_x3wgy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")

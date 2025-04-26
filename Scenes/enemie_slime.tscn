@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c3yxbgcipa0xg"]
+[gd_scene load_steps=16 format=3 uid="uid://c3yxbgcipa0xg"]
 
 [ext_resource type="Script" uid="uid://ieolwf8h7otg" path="res://Scripts/enemie_slime.gd" id="1_6tic4"]
 [ext_resource type="Texture2D" uid="uid://ue2yf1ykg5lc" path="res://Assets/Enemie/Slime_Green.png" id="1_kbrsc"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://dpdj1v56vu7e3" path="res://Inventory/Items/slimeball_drop.tres" id="3_scjhp"]
 [ext_resource type="Texture2D" uid="uid://bsa8nifalf2q6" path="res://Assets/UI/HealthBar/progress.png" id="4_0dy2c"]
 [ext_resource type="Resource" uid="uid://bfwb80rge1jmc" path="res://Inventory/Items/heal_drop.tres" id="4_scjhp"]
+[ext_resource type="Resource" uid="uid://i74sinqcnj3o" path="res://Inventory/Items/rare_heal_drop.tres" id="5_kt2gt"]
 
 [sub_resource type="Animation" id="Animation_mce5u"]
 length = 0.001
@@ -101,7 +102,7 @@ radius = 11.0
 [node name="Slime" type="CharacterBody2D"]
 script = ExtResource("1_6tic4")
 damage_interval = 2.0
-drop_items = Array[ExtResource("2_8p5jt")]([ExtResource("3_scjhp"), ExtResource("4_scjhp")])
+drop_items = Array[ExtResource("2_8p5jt")]([ExtResource("3_scjhp"), ExtResource("4_scjhp"), ExtResource("5_kt2gt")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_kbrsc")

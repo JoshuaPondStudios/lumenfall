@@ -11,13 +11,16 @@ extends CharacterBody2D
 @export var shake_intensity := 1
 
 @export var inv: Inv
-
+@export var healing_particles: PackedScene  # Partikel-Effekt
 
 @onready var anim := $AnimationPlayer
 @onready var sprite := $Sprite2D
 @onready var camera := $Camera2D
 @onready var attack_area := $AttackArea
 @onready var health_bar := $UI/HealthBar
+
+@onready var heal_sprite := get_node("Sprite2D")  # Dein Spieler-Sprite
+var heal_scale := Vector2(1, 1)  # Initiale Skalierung des Spielers
 
 var last_direction := "south"
 var is_attacking := false
@@ -188,8 +191,9 @@ func _physics_process(delta):
 			anim.speed_scale = anim_speed  # Animationsgeschwindigkeit anpassen
 
 			# Animation abspielen und sofortige Richtungsänderung sicherstellen
-			if !anim.is_playing() or not anim.current_animation.begins_with("walk"):
+			if direction_string != last_direction or not anim.current_animation.begins_with("walk"):
 				anim.play("walk_" + direction_string)
+
 
 			last_direction = direction_string
 		else:
@@ -254,4 +258,34 @@ func use_healing_item():
 			var item = slot.item
 			item.use_item(self)
 			inv.update.emit()  # UI benachrichtigen
+
+			# Spieler-Feedback: Heil-Effekt und Animation
+			play_heal_sound()   # Soundeffekt (falls gewünscht)
+			start_heal_animation()  # Heil-Animation für den Spieler
 			return  # Nur einen Trank verwenden
+
+# Akustischer Heil-Effekt
+func play_heal_sound():
+	var heal_sound = preload("res://Sounds/healing.mp3")  # Stelle sicher, dass die Datei existiert
+	var audio_player = AudioStreamPlayer.new()
+	audio_player.stream = heal_sound
+	add_child(audio_player)
+	audio_player.play()  # Heilt, wenn der Sound abgespielt wird
+
+func start_heal_animation():
+	# Pulsierende Heil-Animation (Skalierung)
+	var scale_up := Vector2(1.1, 1.1)  # Vergrößerte Skalierung
+	var scale_down := Vector2(1.0, 1.0)  # Zurück zur normalen Skalierung
+
+	# Spieler skalieren
+	heal_sprite.scale = scale_up
+	await get_tree().create_timer(0.2).timeout
+
+	heal_sprite.scale = scale_down
+	await get_tree().create_timer(0.2).timeout
+
+	# Spieler leuchten lassen (Farbe ändern)
+	heal_sprite.modulate = Color(1, 1, 0, 1)  # Spieler wird gelb
+	await get_tree().create_timer(0.2).timeout
+
+	heal_sprite.modulate = Color(1, 1, 1, 1)  # Zurück zur normalen Farbe

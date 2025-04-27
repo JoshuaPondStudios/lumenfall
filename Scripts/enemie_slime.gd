@@ -127,6 +127,7 @@ func die():
 	is_dead = true
 	velocity = Vector2.ZERO
 	collision.disabled = true
+	health_bar.visible = false
 	anim.play("die")
 
 	# Drop-System mit mehreren Items

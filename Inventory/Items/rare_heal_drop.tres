@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DropItemData" load_steps=3 format=3 uid="uid://i74sinqcnj3o"]
+
+[ext_resource type="PackedScene" uid="uid://cxbs6phre502r" path="res://Scenes/rare_heal_item.tscn" id="1_muwyt"]
+[ext_resource type="Script" uid="uid://dbdwgwb5n23ck" path="res://Scripts/DropitemData.gd" id="2_7kggk"]
+
+[resource]
+script = ExtResource("2_7kggk")
+scene = ExtResource("1_muwyt")
+chance = 0.1
+metadata/_custom_type_script = "uid://dbdwgwb5n23ck"

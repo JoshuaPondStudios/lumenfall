@@ -1,20 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxbs6phre502r"]
+[gd_scene load_steps=7 format=3 uid="uid://cxbs6phre502r"]
 
 [ext_resource type="Script" uid="uid://71e0o1ujsypy" path="res://Inventory/Scripts/heal_item.gd" id="1_fcw7q"]
 [ext_resource type="Resource" uid="uid://cq42r5lsiwcma" path="res://Inventory/Items/rare_heal.tres" id="2_fcw7q"]
 [ext_resource type="Texture2D" uid="uid://bcduqy83bdrqo" path="res://Assets/Items/rare_heal/heal.png" id="3_hxvej"]
+[ext_resource type="AudioStream" uid="uid://db475uurdamqd" path="res://Sounds/health-pickup-6860.mp3" id="3_k1jeu"]
+[ext_resource type="Texture2D" uid="uid://gflm1pykhggs" path="res://Assets/Items/shadow.png" id="4_hxvej"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d6ei1"]
-radius = 8.0
+radius = 5.0
 
 [node name="HealItem" type="Area2D"]
 script = ExtResource("1_fcw7q")
 item = ExtResource("2_fcw7q")
+pickup_sound = ExtResource("3_k1jeu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_d6ei1")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.470588)
+position = Vector2(0, 2.13379)
+scale = Vector2(0.75, 0.716553)
+texture = ExtResource("4_hxvej")
+
+[node name="ItemSprite" type="Sprite2D" parent="Shadow"]
+position = Vector2(0, -2.97785)
+scale = Vector2(0.8, 0.837342)
 texture = ExtResource("3_hxvej")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

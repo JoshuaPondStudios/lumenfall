@@ -1,15 +1,15 @@
-[gd_scene load_steps=22 format=3 uid="uid://bf6gsr2n5c1b7"]
+[gd_scene load_steps=23 format=3 uid="uid://bf6gsr2n5c1b7"]
 
 [ext_resource type="Script" uid="uid://f6013be0kiij" path="res://Scripts/player.gd" id="1_muy17"]
-[ext_resource type="Texture2D" uid="uid://se1nubj35myy" path="res://Assets/Player/PlayerNEW-export.png" id="2_cvnsp"]
 [ext_resource type="Resource" uid="uid://cu51mb6hyh14n" path="res://Inventory/PlayerInv.tres" id="2_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://cq8mcktfxdjfs" path="res://Assets/UI/HealthBar/under.png" id="3_vgqql"]
+[ext_resource type="Texture2D" uid="uid://dcbqhxy1wisf6" path="res://Assets/Player/Player2.png" id="3_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://bsa8nifalf2q6" path="res://Assets/UI/HealthBar/progress.png" id="4_fkybt"]
 [ext_resource type="PackedScene" uid="uid://87fjtxx0nulq" path="res://Scenes/inv_ui.tscn" id="6_x3wgy"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
-radius = 6.0
-height = 18.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x3wgy"]
+radius = 3.0
+height = 13.0
 
 [sub_resource type="Animation" id="Animation_x3jt1"]
 length = 0.001
@@ -39,7 +39,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [42, 45]
+"values": [31, 33]
 }
 
 [sub_resource type="Animation" id="Animation_xhxvj"]
@@ -55,7 +55,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [48, 51]
+"values": [34, 36]
 }
 
 [sub_resource type="Animation" id="Animation_kxe4b"]
@@ -71,11 +71,27 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [36, 39]
+"values": [27, 29]
 }
 
 [sub_resource type="Animation" id="Animation_cvnsp"]
 resource_name = "dash"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [40, 42]
+}
+
+[sub_resource type="Animation" id="Animation_3smsa"]
+resource_name = "dash_north"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -87,7 +103,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [60, 63]
+"values": [43, 46]
 }
 
 [sub_resource type="Animation" id="Animation_edrqq"]
@@ -103,7 +119,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [54, 57]
+"values": [37, 39]
 }
 
 [sub_resource type="Animation" id="Animation_q611b"]
@@ -118,7 +134,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [6, 11]
+"values": [4, 5]
 }
 
 [sub_resource type="Animation" id="Animation_3x6e4"]
@@ -133,7 +149,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [12, 17]
+"values": [7, 8]
 }
 
 [sub_resource type="Animation" id="Animation_ct51j"]
@@ -148,7 +164,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0, 5]
+"values": [0, 2]
 }
 
 [sub_resource type="Animation" id="Animation_p0e8h"]
@@ -164,7 +180,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [24, 29]
+"values": [15, 20]
 }
 
 [sub_resource type="Animation" id="Animation_grlr0"]
@@ -180,7 +196,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [30, 35]
+"values": [21, 26]
 }
 
 [sub_resource type="Animation" id="Animation_7h58e"]
@@ -196,7 +212,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [18, 23]
+"values": [9, 14]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b2fy6"]
@@ -206,6 +222,7 @@ _data = {
 &"attack_north": SubResource("Animation_xhxvj"),
 &"attack_south": SubResource("Animation_kxe4b"),
 &"dash": SubResource("Animation_cvnsp"),
+&"dash_north": SubResource("Animation_3smsa"),
 &"die": SubResource("Animation_edrqq"),
 &"idle_east": SubResource("Animation_q611b"),
 &"idle_north": SubResource("Animation_3x6e4"),
@@ -220,16 +237,19 @@ radius = 14.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_muy17")
+dash_duration = 0.25
 inv = ExtResource("2_x3wgy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_cvnsp")
-hframes = 6
-vframes = 11
+texture = ExtResource("3_x3wgy")
+hframes = 7
+vframes = 7
+frame = 43
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
-shape = SubResource("CapsuleShape2D_cvnsp")
+position = Vector2(-0.5, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_x3wgy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")

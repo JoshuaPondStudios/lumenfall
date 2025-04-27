@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="DropItemData" load_steps=3 format=3 uid="uid://dpdj1v56vu7e3"]
+[gd_resource type="Resource" script_class="DropItemData" load_steps=3 format=3 uid="uid://cqh2c714aidbj"]
 
-[ext_resource type="PackedScene" uid="uid://co145bjht0r03" path="res://Scenes/slime_ball_collectable.tscn" id="1_svsfx"]
+[ext_resource type="PackedScene" uid="uid://dek4i2vybna6p" path="res://Scenes/slimeball_item.tscn" id="1_svsfx"]
 [ext_resource type="Script" uid="uid://dbdwgwb5n23ck" path="res://Scripts/DropitemData.gd" id="2_ygpqe"]
 
 [resource]
 script = ExtResource("2_ygpqe")
 scene = ExtResource("1_svsfx")
-chance = 0.4
+chance = 0.1
 metadata/_custom_type_script = "uid://dbdwgwb5n23ck"

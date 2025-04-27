@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ue2yf1ykg5lc" path="res://Assets/Enemie/Slime_Green.png" id="1_kbrsc"]
 [ext_resource type="Script" uid="uid://dbdwgwb5n23ck" path="res://Scripts/DropitemData.gd" id="2_8p5jt"]
 [ext_resource type="Texture2D" uid="uid://cq8mcktfxdjfs" path="res://Assets/UI/HealthBar/under.png" id="3_fs1u7"]
-[ext_resource type="Resource" uid="uid://dpdj1v56vu7e3" path="res://Inventory/Items/slimeball_drop.tres" id="3_scjhp"]
+[ext_resource type="Resource" uid="uid://cqh2c714aidbj" path="res://Inventory/Items/slimeball_drop.tres" id="3_scjhp"]
 [ext_resource type="Texture2D" uid="uid://bsa8nifalf2q6" path="res://Assets/UI/HealthBar/progress.png" id="4_0dy2c"]
 [ext_resource type="Resource" uid="uid://bfwb80rge1jmc" path="res://Inventory/Items/heal_drop.tres" id="4_scjhp"]
 [ext_resource type="Resource" uid="uid://i74sinqcnj3o" path="res://Inventory/Items/rare_heal_drop.tres" id="5_kt2gt"]

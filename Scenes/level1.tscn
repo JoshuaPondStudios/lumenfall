@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://lwc7akh13nsv"]
+[gd_scene load_steps=20 format=4 uid="uid://lwc7akh13nsv"]
 
 [ext_resource type="Texture2D" uid="uid://dkt3hncn2hpne" path="res://Assets/Tilesets/Path_Tile.png" id="1_hmykj"]
 [ext_resource type="PackedScene" uid="uid://bf6gsr2n5c1b7" path="res://Scenes/player.tscn" id="2_gjohp"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bnsocndtg4ng2" path="res://Scripts/SlimeSpawner.gd" id="7_cpkqv"]
 [ext_resource type="PackedScene" uid="uid://cxbs6phre502r" path="res://Scenes/rare_heal_item.tscn" id="11_cpkqv"]
 [ext_resource type="PackedScene" uid="uid://mfyq12iil8vs" path="res://Scenes/pause_menu.tscn" id="11_rqhku"]
+[ext_resource type="PackedScene" uid="uid://dek4i2vybna6p" path="res://Scenes/slimeball_item.tscn" id="12_cpkqv"]
 [ext_resource type="PackedScene" uid="uid://c1togd1q205ef" path="res://Scenes/heal_item.tscn" id="12_d1mwp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i8ckr"]
@@ -156,6 +157,12 @@ position = Vector2(156, 244)
 
 [node name="HealItem6" parent="." instance=ExtResource("11_cpkqv")]
 position = Vector2(501, 198)
+
+[node name="HealItem7" parent="." instance=ExtResource("12_cpkqv")]
+position = Vector2(141, 98)
+
+[node name="HealItem8" parent="." instance=ExtResource("12_cpkqv")]
+position = Vector2(103, 29)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
